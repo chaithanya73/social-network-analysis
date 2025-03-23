@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Analysis</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main class="container">
+        <!-- File Upload Section -->
+        <section id="upload">
+            <h2>Mutual Friends</h2>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <label for="edgelist_file">Choose an edge list file </label>
+                <input type="file" name="edgelist_file" required><br><br>
+                
+                <label for="node1">Node 1</label>
+                <input type="text" name="node1" placeholder="Node 1"><br><br>
+                
+                <label for="node2">Node 2</label>
+                <input type="text" name="node2" placeholder="Node 2"><br><br>
+                
+                <input type="submit" value="Upload and Find Mutual Friends">
+            </form>
+        </section>
+
+        <!-- Mutual Friends Section -->
+        <section id="mutual">
+            {% if mutual_friends %}
+                <p>Mutual Friends between {{ node1 }} and {{ node2 }} are</p>
+                <ul>
+                    {% for friend in mutual_friends %}
+                        <li>{{ friend }}  
+                            
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            {% if image %}
+                <h3>Visualization</h3>
+                <img src="{{ image }}" alt="Mutual Friends Graph" class="image-style">
+            {% endif %}
+        </section>
+
+        <!-- Edge Prediction Section -->
+        <section id="predict">
+            <h2>Edge Prediction Based on Interests</h2>
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+                <label for="edgelist_file">Choose an edge list file </label>
+                <input type="file" name="edgelist_file" required><br><br>
+                
+                <label for="node">Node for Edge Prediction </label>
+                <input type="text" name="node" placeholder="Node" required><br><br>
+                
+                <input type="submit" value="Predict Edges">
+            </form>
+            {% if predicted_edges %}
+                <h3>Predicted Edges</h3>
+                <ul>
+                    {% for edge in predicted_edges %}
+                        <li>{{ edge[0] }} - {{ edge[1] }}</li>
+                    {% endfor %}
+                </ul>
+                
+                {% if predicted_image %}
+                <h3>Visualization</h3>
+                <img src="{{ predicted_image }}" alt="Mutual Friends Graph" class="image-style">
+                {% endif %}   
+            {% endif %}
+        </section>
+
+        <!-- Community Detection Section -->
+        <section id="community">
+            <h2>Community Detection</h2>
+            <form action="/community_detection" method="POST" enctype="multipart/form-data">
+                <label for="file">Choose a file </label>
+                <input type="file" name="file" required><br><br>
+                <input type="submit" value="Detect Communities">
+            </form>
+            {% if communities %}
+                <h3>Detected Communities</h3>
+                <ul>
+                    {% for node, community in communities.items() %}
+                        <li>Node {{ node }} is in Community {{ community }}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Community Visualization</h3>
+                <img src="{{ community_image }}" alt="Community Visualization" class="image-style">
+            {% endif %}
+        </section>
+
+        <!-- Centrality Measures Section -->
+        <section id="centrality">
+            <h2>Centrality Measures</h2>
+            <form action="/centrality" method="POST" enctype="multipart/form-data">
+                <label for="file">Choose a file </label>
+                <input type="file" name="file" required><br><br>
+                <input type="submit" value="Calculate Centrality">
+            </form>
+            {% if top_degree %}
+                <h4>Top  Node by Degree Centrality</h4>
+                <ul>
+                    {% for node, centrality in top_degree %}
+                        <li>Node {{ node }}= {{ centrality }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if top_closeness %}
+                <h4>Top  Node by Closeness Centrality</h4>
+                <ul>
+                    {% for node, centrality in top_closeness %}
+                        <li>Node {{ node }}= {{ centrality }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if top_betweenness %}
+                <h4>Top  Node by Betweenness Centrality</h4>
+                <ul>
+                    {% for node, centrality in top_betweenness %}
+                        <li>Node {{ node }}= {{ centrality }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if centrality_image  %}
+                <h3>Centrality Visualization</h3>
+                <img src="{{ centrality_image }}" alt="Centrality Graph" class="image-style">
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

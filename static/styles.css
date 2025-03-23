@@ -1,0 +1,119 @@
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="file"], input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Section styling for better organization */
+.section {
+    margin-bottom: 30px;
+}
+
+/* Lists styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Image container */
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+.image-style {
+    width: 600px; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Responsive for smaller screens */
+    display: block; /* Optional: prevents inline behavior */
+    margin: auto; /* Center the image */
+}
+
+.community-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between rows */
+}
+
+/* Row container to group three items */
+.community-row {
+    display: flex;
+    justify-content: space-between; /* Distribute items evenly */
+    gap: 1rem; /* Space between items */
+}
+
+/* Individual community item styling */
+.community-item {
+    flex: 1; /* Allow equal width for items */
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
